@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    background: black;
+    cursor: none;
+  }
+
+  body {
+    background: black;
+    color: white;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Clash Display', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Hide default cursor */
+  * {
+    cursor: none !important;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-300;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF0000] to-[#CC0000];
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.button-glow {
+  @apply relative overflow-hidden;
+}
+
+.button-glow::after {
+  @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+  content: '';
+  background: radial-gradient(circle at center, rgba(255, 0, 0, 0.4) 0%, transparent 70%);
+}
+
+.button-glow:hover::after {
+  @apply opacity-100;
+}
+
+/* Cursor glow effect */
+.glow-effect {
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5),
+              0 0 30px rgba(255, 0, 0, 0.3),
+              0 0 45px rgba(255, 0, 0, 0.1);
+}
+
+/* Wave animation for contact button */
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes textEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.rotating-text-enter {
+  animation: textEnter 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rotating-text-exit {
+  animation: textExit 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
